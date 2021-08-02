@@ -4,26 +4,24 @@ import ObservationCard from '../components/ObservationCard';
 import { getObservation } from '../services/list';
 
 const Home = () => {
-  const [list, setList] = useState([]);
+  const [observationList, setObservationList] = useState([]);
 
   useEffect(() => {
     let mounted = true;
     getObservation().then((items) => {
       if (mounted) {
-        setList(items);
+        setObservationList(items);
       }
     });
     return () => (mounted = false);
   }, []);
 
-  const observation_collection = list.map((item) => item);
-
   return (
-    <div className="p-4 is-flex is-justify-content-center">
+    <div className="py-4 px-6 is-flex is-flex-direction-column is-justify-content-center has-background-warning-light is-max-desktop ">
       <Navbar />
-      <div className="container tile is-max-desktop is-8 flex-wrap is-ancestor">
+      <div className="container tile is-max-desktop is-align-self-center is-8 flex-wrap is-ancestor">
         <div className="container tile is-parent is-flex-wrap-wrap">
-          {observation_collection.map((observation) => (
+          {observationList.map((observation) => (
             <ObservationCard observation={observation} />
           ))}
         </div>

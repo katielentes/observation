@@ -2,15 +2,13 @@ import React from 'react';
 
 const Navbar = () => {
   return (
-    <div className="navbar is-flex-direction-column is-hidden-mobile">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="" />
-        </a>
+    <div className="navbar has-background-warning-light is-align-items-center">
+      <div className="navbar-brand">
+        <h1 className="navbar-item is-size-1">🔍🌱</h1>
 
         <a
           role="button"
-          class="navbar-burger"
+          className="navbar-burger"
           aria-label="menu"
           aria-expanded="false"
           data-target="navbarBasicExample"
@@ -22,43 +20,30 @@ const Navbar = () => {
         </a>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu is-flex-direction-column">
-        <div class="navbar-start">
-          <a class="navbar-item" href="https://bulma.io">
+      <div id="navbarBasicExample" className="navbar-menu is-flex-direction-column">
+        <div className="navbar-start">
+          <a className="navbar-item" href="https://bulma.io">
             Home
           </a>
 
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="https://bulma.io">
+          <div className="navbar-item has-dropdown is-hoverable">
+            <a className="navbar-link" href="https://bulma.io">
               More
             </a>
 
-            <div class="navbar-dropdown">
-              <a class="navbar-item" href="https://bulma.io">
+            <div className="navbar-dropdown">
+              <a className="navbar-item" href="https://bulma.io">
                 About
               </a>
-              <a class="navbar-item" href="https://bulma.io">
+              <a className="navbar-item" href="https://bulma.io">
                 Jobs
               </a>
-              <a class="navbar-item" href="https://bulma.io">
+              <a className="navbar-item" href="https://bulma.io">
                 Contact
               </a>
-              <hr class="navbar-divider" />
-              <a class="navbar-item" href="https://bulma.io">
+              <hr className="navbar-divider" />
+              <a className="navbar-item" href="https://bulma.io">
                 Report an issue
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-primary" href="https://bulma.io">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-light" href="https://bulma.io">
-                Log in
               </a>
             </div>
           </div>

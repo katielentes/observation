@@ -9,7 +9,7 @@ function App() {
     <main>
       <Switch>
         <Route path="/" component={Home} exact />
-        <Route path="/observation" component={ObservationIndex} exact />
+        <Route path="/:observationId" component={ObservationIndex} exact />
       </Switch>
     </main>
   );
