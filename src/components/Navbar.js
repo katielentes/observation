@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Navbar = () => {
+  //TODO: link to my github or something
   return (
     <div className="navbar has-background-warning-light is-align-items-center">
       <div className="navbar-brand">

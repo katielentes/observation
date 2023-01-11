@@ -2,6 +2,8 @@ import React from 'react';
 
 const ObservationIndex = (observationData) => {
   const observation = observationData.location.state.observationData;
+
+  //TODO: make this cute, include photo, longitude and latitude to location, maybe show it on a map
   return (
     <>
       <div className>{observation.species_guess}</div>
