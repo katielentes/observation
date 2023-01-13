@@ -4,7 +4,6 @@ import '../style/ObservationCard.css';
 import photoUnavailable from '../assets/photoUnavailable.png';
 
 const ObservationCard = ({ observation }) => {
-  console.log(observation);
   return (
     <div
       className="tile is-child card p-2 is-flex is-flex-direction-column is-justify-content-space-evenly"
