@@ -1,52 +1,39 @@
 import React from 'react';
+import Select from '../components/Select';
+import { Link } from 'react-router-dom';
 
-const Navbar = () => {
-  //TODO: link to my github or something
+const Navbar = ({ filterOptions, filterOptionsTitle, onFilterSelect, onSearchChange }) => {
   return (
     <div className="navbar has-background-warning-light is-align-items-center">
       <div className="navbar-brand">
-        <h1 className="navbar-item is-size-1">🔍🌱</h1>
-
-        <a
-          role="button"
-          className="navbar-burger"
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample"
-          href="https://bulma.io"
+        <Link
+          to={{
+            pathname: `/`,
+          }}
+          className="navbar-item is-size-1"
         >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
+          🔍🌱
+        </Link>
       </div>
 
-      <div id="navbarBasicExample" className="navbar-menu is-flex-direction-column">
+      <div className="navbar-menu is-flex-direction-row">
         <div className="navbar-start">
-          <a className="navbar-item" href="https://bulma.io">
-            Home
-          </a>
+          <div className="has-input is-align-self-center">
+            <Select
+              options={filterOptions}
+              title={filterOptionsTitle}
+              onFilterSelect={onFilterSelect}
+            />
+          </div>
 
-          <div className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link" href="https://bulma.io">
-              More
-            </a>
-
-            <div className="navbar-dropdown">
-              <a className="navbar-item" href="https://bulma.io">
-                About
-              </a>
-              <a className="navbar-item" href="https://bulma.io">
-                Jobs
-              </a>
-              <a className="navbar-item" href="https://bulma.io">
-                Contact
-              </a>
-              <hr className="navbar-divider" />
-              <a className="navbar-item" href="https://bulma.io">
-                Report an issue
-              </a>
-            </div>
+          <div className="navbar-item has-input">
+            <input
+              className="input"
+              type="text"
+              placeholder="Text input"
+              onChange={onSearchChange}
+            ></input>
+            <button className="button is-primary  ml-1">Search</button>
           </div>
         </div>
       </div>

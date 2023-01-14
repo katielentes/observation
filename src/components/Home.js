@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import Select from '../components/Select';
 import ObservationCard from '../components/ObservationCard';
 import { getObservation } from '../services/list';
 
 const Home = () => {
   const [observationList, setObservationList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
 
   //TODO: how would i do this fetching and setting state differently given what i know today?
 
@@ -14,7 +14,7 @@ const Home = () => {
     getObservation().then((items) => {
       if (mounted) {
         setObservationList(items);
-        //maybe here is where we set default for filtered OL
+        setFilteredList(items);
       }
     });
     return () => (mounted = false);
@@ -26,31 +26,36 @@ const Home = () => {
     []
   );
 
-  //TODO: make it so filterOptions don't change when selecting a filter
-  //TODO: defaut to all on mount
   const onFilterSelect = (e) => {
-    console.log(e.target.value);
+    const selected = e.target.value;
     const filtered = observationList.filter((o) => {
       return e.target.value === o.iconic_taxon.name;
     });
-    setObservationList(filtered);
+    selected === 'Select Type' ? setFilteredList(observationList) : setFilteredList(filtered);
+  };
+
+  const onSearchChange = (e) => {
+    console.log(e.target.value);
+    //TODO: use debounce function
+    console.log('heelllo');
   };
 
   return (
     <div className="py-4 px-6 is-flex is-flex-direction-column is-justify-content-center has-background-warning-light is-max-desktop ">
-      <Navbar />
+      <Navbar
+        filterOptions={filterOptions}
+        filterOptionsTitle="Select Type"
+        onFilterSelect={(e) => onFilterSelect(e)}
+        onSearchChange={(e) => onSearchChange(e)}
+      />
       {/* TODO: Create search with debounce function*/}
       {/* TODO: Create button component*/}
       {/* TODO: Create constant file for colors and some other stuff maybe*/}
-      <Select
-        options={filterOptions}
-        title="Select Type"
-        onFilterSelect={(e) => onFilterSelect(e)}
-      />
+      {/* TODO: fix up ObservationIndex  */}
 
       <div className="container tile is-max-desktop is-align-self-center is-8 flex-wrap is-ancestor">
         <div className="container tile is-parent is-flex-wrap-wrap">
-          {observationList.map((observation) => (
+          {filteredList.map((observation) => (
             <ObservationCard key={observation.id} observation={observation} />
           ))}
         </div>
