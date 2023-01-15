@@ -19,7 +19,7 @@ const Map = ({ latitude, longitude, imageUrl }) => {
     // Important! Always set the container height explicitly
     <div style={{ height: '70vh', width: '50vw' }}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyDQluKwBoqyO4HC3Vte4oS9ZcYDrfLlAVw' }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
         defaultCenter={defaultProps.center}
         defaultZoom={defaultProps.zoom}
       >

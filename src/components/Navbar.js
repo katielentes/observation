@@ -1,6 +1,7 @@
 import React from 'react';
-import Select from '../components/Select';
+import Select from './form/Select';
 import { Link } from 'react-router-dom';
+import TextField from './form/TextField';
 
 const Navbar = ({
   filterOptions,
@@ -25,7 +26,7 @@ const Navbar = ({
 
       <div className="is-flex-direction-row">
         <div className="navbar-start">
-          <div className="has-input is-align-self-center">
+          <div className="has-input is-align-self-center navbar-item">
             <Select
               options={filterOptions}
               title={filterOptionsTitle}
@@ -34,13 +35,11 @@ const Navbar = ({
           </div>
 
           <div className="navbar-item has-input">
-            <input
-              value={searchVal}
-              className="input"
-              type="text"
-              placeholder={searchPlaceholder}
-              onChange={onSearchChange}
-            ></input>
+            <TextField
+              searchPlaceholder={searchPlaceholder}
+              searchVal={searchVal}
+              onSearchChange={onSearchChange}
+            />
           </div>
         </div>
       </div>

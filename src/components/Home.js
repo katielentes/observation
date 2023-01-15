@@ -79,7 +79,7 @@ const Home = () => {
       {/* TODO: Create constant file for colors and some other stuff maybe*/}
       {/* TODO: fix up ObservationIndex  */}
 
-      <div className="container tile is-max-desktop is-align-self-center is-8 flex-wrap is-ancestor">
+      <div className="container is-max-desktop is-align-self-center   flex-wrap is-ancestor">
         {isLoading ? <div>Loading...!</div> : <></>}
         <div className="container tile is-parent is-flex-wrap-wrap">
           {filteredList.length > 0 ? (
