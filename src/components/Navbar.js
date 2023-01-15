@@ -8,6 +8,7 @@ const Navbar = ({
   onFilterSelect,
   onSearchChange,
   searchVal,
+  searchPlaceholder,
 }) => {
   return (
     <div className="navbar has-background-warning-light is-align-items-center">
@@ -22,7 +23,7 @@ const Navbar = ({
         </Link>
       </div>
 
-      <div className="navbar-menu is-flex-direction-row">
+      <div className="is-flex-direction-row">
         <div className="navbar-start">
           <div className="has-input is-align-self-center">
             <Select
@@ -37,10 +38,9 @@ const Navbar = ({
               value={searchVal}
               className="input"
               type="text"
-              placeholder="Search by name"
+              placeholder={searchPlaceholder}
               onChange={onSearchChange}
             ></input>
-            <button className="button is-primary  ml-1">Search</button>
           </div>
         </div>
       </div>

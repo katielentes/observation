@@ -73,9 +73,9 @@ const Home = () => {
         onFilterSelect={(e) => onFilterSelect(e)}
         onSearchChange={(e) => onSearchChange(e)}
         searchVal={searchVal}
+        searchPlaceholder="Search by name"
       />
 
-      {/* TODO: Create button component*/}
       {/* TODO: Create constant file for colors and some other stuff maybe*/}
       {/* TODO: fix up ObservationIndex  */}
 
