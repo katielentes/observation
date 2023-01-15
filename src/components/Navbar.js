@@ -2,7 +2,13 @@ import React from 'react';
 import Select from '../components/Select';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ filterOptions, filterOptionsTitle, onFilterSelect, onSearchChange }) => {
+const Navbar = ({
+  filterOptions,
+  filterOptionsTitle,
+  onFilterSelect,
+  onSearchChange,
+  searchVal,
+}) => {
   return (
     <div className="navbar has-background-warning-light is-align-items-center">
       <div className="navbar-brand">
@@ -28,9 +34,10 @@ const Navbar = ({ filterOptions, filterOptionsTitle, onFilterSelect, onSearchCha
 
           <div className="navbar-item has-input">
             <input
+              value={searchVal}
               className="input"
               type="text"
-              placeholder="Text input"
+              placeholder="Search by name"
               onChange={onSearchChange}
             ></input>
             <button className="button is-primary  ml-1">Search</button>
