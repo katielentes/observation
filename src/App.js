@@ -6,7 +6,7 @@ import ObservationIndex from './components/ObservationIndex';
 
 function App() {
   return (
-    <main>
+    <main className="py-4 px-6 is-flex is-flex-direction-column is-justify-content-center has-background-warning-light is-max-desktop">
       <Switch>
         <Route path="/" component={Home} exact />
         <Route path="/:observationId" component={ObservationIndex} exact />

@@ -66,7 +66,7 @@ const Home = () => {
   };
 
   return (
-    <div className="py-4 px-6 is-flex is-flex-direction-column is-justify-content-center has-background-warning-light is-max-desktop ">
+    <div>
       <Navbar
         filterOptions={filterOptions}
         filterOptionsTitle={DEFAULT}
@@ -79,7 +79,7 @@ const Home = () => {
       {/* TODO: Create constant file for colors and some other stuff maybe*/}
       {/* TODO: fix up ObservationIndex  */}
 
-      <div className="container is-max-desktop is-align-self-center   flex-wrap is-ancestor">
+      <div className=" level container is-max-desktop is-align-self-center flex-wrap is-ancestor">
         {isLoading ? <div>Loading...!</div> : <></>}
         <div className="container tile is-parent is-flex-wrap-wrap">
           {filteredList.length > 0 ? (

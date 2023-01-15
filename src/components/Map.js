@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import photoUnavailable from '../assets/photoUnavailable.png';
 
