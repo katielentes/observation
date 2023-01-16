@@ -10,6 +10,9 @@ const Navbar = ({
   onSearchChange,
   searchVal,
   searchPlaceholder,
+  searchByUserPlaceholder,
+  onUserSearchChange,
+  user,
 }) => {
   return (
     <div className="navbar has-background-warning-light is-align-items-center">
@@ -26,6 +29,13 @@ const Navbar = ({
 
       <div className="is-flex-direction-row">
         <div className="navbar-start">
+          <div className="navbar-item has-input">
+            <TextField
+              searchPlaceholder={searchByUserPlaceholder}
+              searchVal={user}
+              onSearchChange={onUserSearchChange}
+            />
+          </div>
           <div className="has-input is-align-self-center navbar-item">
             <Select
               options={filterOptions}

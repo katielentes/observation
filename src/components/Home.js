@@ -1,57 +1,60 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { debounce } from '../utils/debounce';
+import { hasValue } from '../utils/hasValue';
 import Navbar from '../components/Navbar';
 import ObservationCard from '../components/ObservationCard';
-import { getObservation } from '../services/list';
+import { getObservationListByUser } from '../services/list';
 
 const Home = () => {
+  const [user, setUser] = useState('katie1441');
   const [observationList, setObservationList] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [searchVal, setSearchVal] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
   const DEFAULT = 'Select Kingdom';
 
-  //TODO: how would i do this fetching and setting state differently given what i know today?
+  useEffect(() => {
+    setIsLoading(true);
+    //good users to look at  - psweet, vogelbild, wuhsienluson
+    debouncedCallback(() => {
+      handleGetObservationListByUser(user);
+    }, user);
+  }, [user]);
 
   useEffect(() => {
-    let mounted = true;
-    getObservation().then((items) => {
-      if (mounted) {
-        setObservationList(items);
-        setFilteredList(items);
-      }
+    observationList.length > 0 &&
+      debouncedCallback(() => {
+        handleSearch(searchVal);
+      }, searchVal);
+  }, [searchVal]);
+
+  const handleGetObservationListByUser = () => {
+    setIsLoading(true);
+    getObservationListByUser(user).then((observations) => {
+      setIsLoading(false);
+      setObservationList(observations);
+      setFilteredList(observations);
     });
-    return () => (mounted = false);
-  }, []);
+  };
 
   const debouncedCallback = useCallback(
     debounce((callback, nextValue) => callback(nextValue), 750),
     []
   );
 
-  useEffect(() => {
-    debouncedCallback(() => {
-      handleSearch(searchVal);
-    }, searchVal);
-  }, [searchVal, observationList]);
-
   const handleSearch = (value) => {
     setIsLoading(true);
     const filtered = observationList.filter((o) => {
       return (
-        o.taxon?.common_name?.name.toLowerCase().includes(value) ||
-        o.species_guess?.toLowerCase().includes(value)
+        hasValue(o.taxon?.common_name?.name, value) ||
+        hasValue(o.species_guess, value) ||
+        hasValue(o.taxon?.name, value)
       );
     });
     setFilteredList(filtered);
     setIsLoading(false);
   };
-
-  const filterOptions = observationList.reduce(
-    (unique, o) =>
-      unique.includes(o.iconic_taxon.name) ? unique : [...unique, o.iconic_taxon.name],
-    []
-  );
 
   const onFilterSelect = (e) => {
     const selected = e.target.value;
@@ -65,6 +68,18 @@ const Home = () => {
     setSearchVal(e.target.value.toLowerCase());
   };
 
+  const onUserSearchChange = (e) => {
+    setUser(e.target.value.toLowerCase());
+  };
+
+  const filterOptions =
+    observationList &&
+    observationList.reduce(
+      (unique, o) =>
+        unique.includes(o?.iconic_taxon?.name) ? unique : [...unique, o?.iconic_taxon?.name],
+      []
+    );
+
   return (
     <div>
       <Navbar
@@ -73,23 +88,25 @@ const Home = () => {
         onFilterSelect={(e) => onFilterSelect(e)}
         onSearchChange={(e) => onSearchChange(e)}
         searchVal={searchVal}
+        user={user}
         searchPlaceholder="Search by name"
+        searchByUserPlaceholder="Search user"
+        onUserSearchChange={onUserSearchChange}
       />
-
-      {/* TODO: Create constant file for colors and some other stuff maybe*/}
-      {/* TODO: fix up ObservationIndex  */}
 
       <div className=" level container is-max-desktop is-align-self-center flex-wrap is-ancestor">
         {isLoading ? <div>Loading...!</div> : <></>}
-        <div className="container tile is-parent is-flex-wrap-wrap">
-          {filteredList.length > 0 ? (
-            filteredList.map((observation) => (
-              <ObservationCard key={observation.id} observation={observation} />
-            ))
-          ) : (
-            <div>No matching observations</div>
-          )}
-        </div>
+        {!isLoading && observationList && (
+          <div className="container tile is-parent is-flex-wrap-wrap">
+            {filteredList?.length > 0 ? (
+              filteredList.map((observation) => (
+                <ObservationCard key={observation.id} observation={observation} />
+              ))
+            ) : (
+              <div>No matches</div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
