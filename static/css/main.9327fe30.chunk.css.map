@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/style/ObservationCard.css"],"names":[],"mappings":"AAAA,gBACE,UAAW,CACX,WAAY,CACZ,gBACF,CAEA,OACE,qBACF","file":"main.9327fe30.chunk.css","sourcesContent":[".center-cropped {\n  width: 100%;\n  height: auto;\n  object-fit:cover;\n}\n\n#cards {\n  margin: 1rem !important;\n}\n\n"]}
